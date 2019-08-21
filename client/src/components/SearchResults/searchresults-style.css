@@ -1,0 +1,10 @@
+.results {
+    background-color: #d7cec7;
+    color: #565656;
+    padding-left: 5%;
+    margin: 1%
+}
+
+.no-results {
+    font-style: italic;
+}

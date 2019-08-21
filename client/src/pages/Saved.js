@@ -1,10 +1,14 @@
 import React from 'react';
+import Navigation from '../components/Navigation';
+import SavedGrid from '../components/SavedGrid';
+
 
 export default class Saved extends React.Component{
     render(){
         return(
             <div>
-                This is the saved page.
+                <Navigation />
+                <SavedGrid />
             </div>
         )
     }
