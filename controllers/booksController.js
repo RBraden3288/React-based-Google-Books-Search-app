@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require('../models/book');
 
 //methods for booksController (db)
 //connects to mongo db

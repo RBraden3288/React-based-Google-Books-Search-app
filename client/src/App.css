@@ -2,3 +2,22 @@
     background-color: #565656;
     font-family: '"Palatino Linotype", "Book Antiqua", Palatino, serif'
 }
+
+.no-results {
+    font-style: italic;
+    background-color: #d7cec7;
+    color: #565656;
+    padding-left: 5%;
+    margin: 1%;
+    border-radius: 2px
+}
+
+.books-container {
+    margin-bottom: 2%;
+    margin-top: 2%;
+    padding-bottom: 5%
+}
+
+.search-bar-container {
+    padding-top: 2%
+}

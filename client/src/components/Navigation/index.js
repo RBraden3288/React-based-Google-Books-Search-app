@@ -39,7 +39,7 @@ export default class Navigation extends React.Component {
               <NavItem>
                 <NavLink href="https://github.com/RBraden3288/React-based-Google-Books-Search-app" target="_blank">GitHub</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+              {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
@@ -55,7 +55,7 @@ export default class Navigation extends React.Component {
                     </Link>
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
         </Navbar>

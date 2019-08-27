@@ -1,14 +1,24 @@
 import React from 'react';
 import './searchresults-style.css';
+import {
+    Row,
+    Col,
+    Label
+} from 'reactstrap';
 
 export default class SearchResults extends React.Component {
     render() {
-        return(
+        return (
             <div className='results'>
-                <container>
-                <p className='no-results'>There are no results to display.</p>
-
-                </container>
+                <Label className='label'>Search Results</Label>
+                <Row className='inner-results'>
+                    <div className='inner-results'>
+                        <Col xs="6">this.props.image</Col>
+                    </div>
+                    <div className='inner-results'>
+                        <Col xs="auto">title authors and link</Col>
+                    </div>
+                </Row>
             </div>
         )
     }

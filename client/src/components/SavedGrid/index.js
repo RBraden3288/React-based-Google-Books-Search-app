@@ -2,7 +2,8 @@ import React from 'react';
 import './savedgrid-style.css';
 import {
     Col,
-    Row
+    Row,
+    Label
 } from 'reactstrap';
 
 export default class SavedGrid extends React.Component {
@@ -10,6 +11,7 @@ export default class SavedGrid extends React.Component {
         return(
             <div className='grid-container'>
                 <div className='saved-books-card'>
+                <Label className='label'>Saved Books</Label>
                     <Row>
                     <div className='book-title'>
                         <Col sm="12" md={{ size: 6, offset: 3 }}>

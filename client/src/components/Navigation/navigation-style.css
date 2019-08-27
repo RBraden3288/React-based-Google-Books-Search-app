@@ -1,4 +1,8 @@
 .nav {
-    width: auto;
+    /* width: auto; */
     font-family: '"Palatino Linotype", "Book Antiqua", Palatino, serif'
+}
+
+.ml-auto {
+    text-align: right
 }
