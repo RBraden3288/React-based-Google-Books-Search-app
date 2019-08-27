@@ -35,3 +35,17 @@
 .search-btn:hover {
     background-color: #C09f80
 }
+
+.results {
+    background-color: #d7cec7;
+    color: #565656;
+    padding-left: 5%;
+    margin: 1%;
+    border-radius: 2px
+}
+
+.inner-results {
+    border-style: solid;
+    border: 2px #565656;
+    border-radius: 2px
+}

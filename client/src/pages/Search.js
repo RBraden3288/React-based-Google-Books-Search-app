@@ -1,7 +1,6 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
-import SearchBar from '../components/SearchBar';
-import SearchResults from '../components/SearchResults';
+import SearchGrid from '../components/SearchGrid';
 import SavedGrid from '../components/SavedGrid';
 import { Container, Col } from 'reactstrap';
 
@@ -31,16 +30,11 @@ export default class Search extends React.Component{
         return(
             <div className="routes">
                 <Navigation />
-                    <Container className="search-bar-container">
-                        <SearchBar getSearchResults={this.getSearchResults}/>
-                    </Container>
                 <Col>
                     <div className="books-container">
-                    <Container className='search-results-container'>
-                        {/* if there are no results to display, add following message: */}
-                        <p className='no-results'>There are no results to display.</p>
-                        {/* if there are results map through SearchResults component */}
-                        <SearchResults results={this.state.results} />
+                    <Container className="search-bar-container">
+                        {/* <SearchBar getSearchResults={this.getSearchResults}/> */}
+                        <SearchGrid />
                     </Container>
                     </div>
                 </Col>
