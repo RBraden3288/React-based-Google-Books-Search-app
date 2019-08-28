@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export default {
-    getBooks: function () {
-        return axios.get("/api/books");
+    getBooks: function(bookSearch) {
+        return axios.get("/api/google", { params: { bookSearch: "title:" + bookSearch } });
     },
-    getBook: function (id) {
+    getSavedBooks: function (id) {
         return axios.get("/api/books" + id);
     },
     saveBook: function(bookInfo) {

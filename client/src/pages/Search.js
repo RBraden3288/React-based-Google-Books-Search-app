@@ -1,51 +1,159 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
-import SearchGrid from '../components/SearchGrid';
-import SavedGrid from '../components/SavedGrid';
-import { Container, Col } from 'reactstrap';
+import '../App.css';
+import API from '../utils/API';
+import { Col,
+    Row,
+    FormGroup,
+    Input
+    } from 'reactstrap';
 
-require ('dotenv').config();
+import SearchResults from '../components/SearchResults';
+import Saved from '../components/Saved';
+import BookDetails from '../components/BookDetails';
 
-
-export default class Search extends React.Component{
+export default class Search extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            results: []
+            bookSearch: "",
+            searchHeader: "no searches",
+            savedHeader: "You have no saved books.",
+            books: []
         }
+
     }
+    
+    handleChange = (event) => {
+        this.setState({ bookSearch: event.target.value })
+        this.setState({ searchHeader: event.target.value })
+    };
+    
+    getBooks = () =>
+        API.getBooks(this.state.bookSearch)
+            .then(res =>
+                this.setState({
+                    books: res.data
+                })
+            )
+            .catch(() =>
+                this.setState({
+                books: [],
+                searchHeader: "Your search didn't generate any matches."
+                })
+            )
 
-    getSearchResults = (title) => {
-        // title will be the value from your search input
-        //api call to get results
-        // set result state
-    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('search for', this.state.bookSearch, 'was clicked');
+        this.getBooks();
+    };
 
-    render(){
+    handleBookSave = id => {
+        const book = this.state.books.find(book => book.id === id);
+        API.saveBook({
+            googleId: book.id,
+            title: book.volumeInfo.title,
+            subtitle: book.volumeInfo.subtitle,
+            link: book.volumeInfo.infoLink,
+            authors: book.volumeInfo.authors,
+            description: book.volumeInfo.description,
+            image: book.volumeInfo.imageLinks.thumbnail
+          }).then(() => this.getBooks());
+    };
+   
+    // changeResultsHeader(book) {
+    //     if (!book === 0) {
+    //         savedHeader = "You have ", book.length, " saved book(s)";
+    //     } else {
+    //        savedHeader 
+    //     }
+    // }
 
-        // const googleAPI = process.env.GoogleBooksAPIKey;
-        // console.log('api key', googleAPI)
+    componentDidMount() {
+        this.getSavedBooks();
+      }
+    
+      getSavedBooks = () => {
+        API.getSavedBooks()
+          .then(res =>
+            this.setState({
+              books: res.data
+            })
+          )
+          .catch(err => console.log(err));
+      };
+    
+      handleBookDelete = id => {
+        API.removeBook(id).then(res => this.getSavedBooks());
+      };
 
-        return(
-            <div className="routes">
-                <Navigation />
-                <Col>
-                    <div className="books-container">
-                    <Container className="search-bar-container">
-                        {/* <SearchBar getSearchResults={this.getSearchResults}/> */}
-                        <SearchGrid />
-                    </Container>
-                    </div>
+    render() {
+
+        return(    
+            <div>     
+            <div className='search-container'>
+                <div className='search-bar'>
+            <form onSubmit={this.handleSubmit}>
+                <FormGroup className="search-field">
+                    <Input           
+                        type="search"
+                        name="search"
+                        id="exampleSearch"
+                        placeholder="Search Google for Books"
+                        onChange={this.handleChange}
+                    />
+                    <button className='search-btn'>
+                        search
+                </button>
+                </FormGroup>
+            </form>
+                </div>
+        </div>
+        <Row>
+                <Col className='data-container left'>
+                <SearchResults />
+                <p className='main-header'>These are the results for:</p>
+                <p className='sub-header'>
+                    {this.state.searchHeader}
+                </p>
+                <hr />
+                <li>
+                    <ul>
+                    {this.state.books.map(book => (
+                    <BookDetails
+                      key={book.id}
+                      title={book.volumeInfo.title}
+                      subtitle={book.volumeInfo.subtitle}
+                      link={book.volumeInfo.infoLink}
+                      authors={book.volumeInfo.authors.join(", ")}
+                      description={book.volumeInfo.description}
+                      image={book.volumeInfo.imageLinks.thumbnail}
+                      Button={() => (
+                        <button
+                          onClick={() => this.handleBookSave(book.id)}
+                          className="btn"
+                        >
+                          Save this
+                        </button>
+                      )}
+                    />
+                  ))}
+                    </ul>
+                </li>
                 </Col>
-                <Col>
-                    <div className="books-container">
-                    <Container className='search-results-container'>
-                    <SavedGrid />
-                    </Container>
-                    </div>
+                <Col className='data-container right'>
+                <Saved />
+                <p className='main-header'>Books you have saved:</p>
+                <p className='sub-header'>
+                    {this.state.savedHeader}
+                </p>
+                <hr />
+
                 </Col>
+        </Row>
             </div>
         )
     }
+
 }

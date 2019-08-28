@@ -1,23 +1,46 @@
-.routes {
-    background-color: #565656;
-    font-family: '"Palatino Linotype", "Book Antiqua", Palatino, serif'
+.search-container {
+    background-image: url("./images/IMG_7530.PNG");
+    background-size: 600px;
+    background-repeat: no-repeat;
+    background-position: top;
 }
 
-.no-results {
+.search-bar {
+    padding-top: 20%;
+    background-color: rgb(255, 255, 0, 0.2);
+}
+
+.search-field {
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+    width: 60%;
+    padding-bottom: 50px
+}
+
+.search-btn {
+    width: 100px;
+    border-radius: 5%;
+    margin: 2% 0 0 0;
+}
+
+.data-container {
+    border-style: ridge;
+    border-width: 2px;
+    height: 400px;
+    margin: 0 3%;
+    padding: 2%
+}
+
+.main-header {
+    color: rgb(42, 114, 182);
+    font-weight: bold;
+}
+
+.sub-header {
     font-style: italic;
-    background-color: #d7cec7;
-    color: #565656;
+    font-size: small;
     padding-left: 5%;
-    margin: 1%;
-    border-radius: 2px
+    margin-top: -3%;
 }
 
-.books-container {
-    margin-bottom: 2%;
-    margin-top: 2%;
-    padding-bottom: 5%
-}
-
-.search-bar-container {
-    padding-top: 2%
-}
